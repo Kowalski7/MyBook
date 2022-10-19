@@ -1,13 +1,15 @@
-package com.kowalski7.mybook.entity;
+package com.kowalski7.mybook.Entity;
+
+import com.kowalski7.mybook.Interface.Element;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class SubChapter {
+public class Section implements Element{
     protected String name;
     protected List<Element> elements = new ArrayList<>();
 
-    public SubChapter(String name) {
+    public Section(String name) {
         this.name = name;
     }
 
@@ -32,5 +34,20 @@ public class SubChapter {
             System.out.print("   ");
             element.print();
         }
+    }
+
+    @Override
+    public void add(Element el) {
+        this.elements.add(el);
+    }
+
+    @Override
+    public void remove(Element el) {
+        this.elements.remove(el);
+    }
+
+    @Override
+    public Element get(int idx) {
+        return this.elements.get(idx);
     }
 }
