@@ -3,32 +3,32 @@ package com.kowalski7.mybook.Entity;
 import com.kowalski7.mybook.Interface.Element;
 import com.kowalski7.mybook.Interface.Picture;
 
-import java.util.concurrent.TimeUnit;
-
-public class Image implements Element, Picture {
+public class ImageProxy implements Picture, Element {
+    protected Image realImage;
     protected String url;
-    protected String content;
 
-    public Image(String url) {
+    public ImageProxy(String url) {
         this.url = url;
-        try {
-            TimeUnit.SECONDS.sleep(5);
-            this.content = "Pretend this is an image ╰(*°▽°*)╯";
-        } catch (InterruptedException e) {
-            System.out.println("Image loading interrupted");
-        }
     }
 
     public String url() {
         return this.url;
     }
 
+    public Image loadImage() {
+        if(realImage==null) {
+            realImage = new Image(this.url);
+        }
+
+        return realImage;
+    }
+
     public String content() {
-        return this.content;
+        return this.realImage.content();
     }
 
     public void print() {
-        System.out.println(this.content);
+        this.loadImage().print();
     }
 
     @Override
@@ -46,4 +46,5 @@ public class Image implements Element, Picture {
         // This class cannot have elements, even though it implements Element
         return null;
     }
+
 }
