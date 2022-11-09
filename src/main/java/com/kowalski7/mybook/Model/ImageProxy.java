@@ -1,7 +1,8 @@
-package com.kowalski7.mybook.Entity;
+package com.kowalski7.mybook.Model;
 
 import com.kowalski7.mybook.Interface.Element;
 import com.kowalski7.mybook.Interface.Picture;
+import com.kowalski7.mybook.Interface.Visitor;
 
 public class ImageProxy implements Picture, Element {
     protected Image realImage;
@@ -29,6 +30,12 @@ public class ImageProxy implements Picture, Element {
 
     public void print() {
         this.loadImage().print();
+    }
+
+    public void accept(Visitor v) {
+        v.visitImageProxy(this);
+        if(this.realImage != null)
+            this.realImage.accept(v);
     }
 
     @Override

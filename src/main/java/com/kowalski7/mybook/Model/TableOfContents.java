@@ -1,11 +1,16 @@
-package com.kowalski7.mybook.Entity;
+package com.kowalski7.mybook.Model;
 
 import com.kowalski7.mybook.Interface.Element;
+import com.kowalski7.mybook.Interface.Visitor;
 
 public class TableOfContents implements Element {
     public TableOfContents() {}
 
     public void print() {}
+
+    public void accept(Visitor v) {
+        v.visitTableOfContents(this);
+    }
 
     @Override
     public void add(Element el) {

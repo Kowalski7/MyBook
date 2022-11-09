@@ -1,6 +1,7 @@
-package com.kowalski7.mybook.Entity;
+package com.kowalski7.mybook.Model;
 
 import com.kowalski7.mybook.Interface.Element;
+import com.kowalski7.mybook.Interface.Visitor;
 
 public class Table implements Element {
     protected String title;
@@ -11,6 +12,10 @@ public class Table implements Element {
 
     public void print() {
         System.out.println(this.title);
+    }
+
+    public void accept(Visitor v) {
+        v.visitTable(this);
     }
 
     @Override

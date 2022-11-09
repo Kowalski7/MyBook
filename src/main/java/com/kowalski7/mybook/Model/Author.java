@@ -1,4 +1,4 @@
-package com.kowalski7.mybook.Entity;
+package com.kowalski7.mybook.Model;
 
 public class Author {
     protected String name;

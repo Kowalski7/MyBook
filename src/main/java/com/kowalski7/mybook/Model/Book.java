@@ -1,4 +1,4 @@
-package com.kowalski7.mybook.Entity;
+package com.kowalski7.mybook.Model;
 
 import com.kowalski7.mybook.Interface.Element;
 

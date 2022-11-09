@@ -1,7 +1,8 @@
-package com.kowalski7.mybook.Entity;
+package com.kowalski7.mybook.Model;
 
 import com.kowalski7.mybook.Interface.AlignStrategy;
 import com.kowalski7.mybook.Interface.Element;
+import com.kowalski7.mybook.Interface.Visitor;
 
 public class Paragraph implements Element {
     protected String text;
@@ -18,6 +19,10 @@ public class Paragraph implements Element {
             textAlignment.render(this);
     }
 
+    public void accept(Visitor v) {
+        v.visitParagraph(this);
+    }
+
     @Override
     public void add(Element el) {
         // This class cannot have elements, even though it implements Element
@@ -32,6 +37,10 @@ public class Paragraph implements Element {
     public Element get(int idx) {
         // This class cannot have elements, even though it implements Element
         return null;
+    }
+
+    public String getText() {
+        return this.text;
     }
 
     public void setAlignStrategy(AlignStrategy alignStrategy) {
