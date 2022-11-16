@@ -3,10 +3,32 @@ package com.kowalski7.mybook.Model;
 import com.kowalski7.mybook.Interface.Element;
 import com.kowalski7.mybook.Interface.Visitor;
 
-public class TableOfContents implements Element {
-    public TableOfContents() {}
+import java.util.LinkedHashMap;
+import java.util.Map;
 
-    public void print() {}
+public class TableOfContents implements Element {
+    protected LinkedHashMap<String, Integer> toc;
+    protected int lastPageNr;
+
+    public TableOfContents() {
+        this.toc = new LinkedHashMap<>();
+        this.lastPageNr = 1;
+    }
+
+    public void addChapter(String name) {
+        toc.put(name, this.lastPageNr);
+        lastPageNr++;
+    }
+
+    public void incrementLastPage() {
+        this.lastPageNr++;
+    }
+
+    public void print() {
+        for(Map.Entry<String, Integer> entry : toc.entrySet()) {
+            System.out.println(entry.getKey() + " .............. " + entry.getValue());
+        }
+    }
 
     public void accept(Visitor v) {
         v.visitTableOfContents(this);

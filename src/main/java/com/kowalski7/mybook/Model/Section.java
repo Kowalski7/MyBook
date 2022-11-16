@@ -43,6 +43,10 @@ public class Section implements Element{
             element.accept(v);
     }
 
+    public String getName() {
+        return name;
+    }
+
     @Override
     public void add(Element el) {
         this.elements.add(el);
