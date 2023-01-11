@@ -1,5 +1,6 @@
 package com.kowalski7.mybook;
 
+import com.kowalski7.mybook.Entity.ObserverToC;
 import com.kowalski7.mybook.Model.*;
 
 public class Main {
@@ -19,7 +20,13 @@ public class Main {
         cap1.add(p4);
         myBook.add(cap1);
 
-        Printing();
+        ObserverToC o = new ObserverToC(myBook);
+        myBook.registerObserver(o);
+
+        Section s = new Section("Test section");
+        myBook.add(s);
+
+        o.getToc().print();
     }
 
     public static void Printing() {

@@ -51,4 +51,8 @@ public class TableOfContentFactory implements Visitor {
     public void visitTable(Table table) {
         this.toc.incrementLastPage();
     }
+
+    public TableOfContents getToc() {
+        return toc;
+    }
 }

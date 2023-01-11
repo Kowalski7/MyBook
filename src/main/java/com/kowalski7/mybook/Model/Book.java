@@ -1,12 +1,14 @@
 package com.kowalski7.mybook.Model;
 
 import com.kowalski7.mybook.Interface.Element;
+import com.kowalski7.mybook.Interface.Observer;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Book extends Section {
     protected List<Author> authors;
+    protected Observer observer;
 
     public Book(String title) {
         super(title);
@@ -29,14 +31,22 @@ public class Book extends Section {
             element.print();
     }
 
+    public void registerObserver(Observer obs) {
+        this.observer = obs;
+    }
+
     @Override
     public void add(Element el) {
         this.elements.add(el);
+        if(this.observer != null)
+            this.observer.update();
     }
 
     @Override
     public void remove(Element el) {
         this.elements.remove(el);
+        if(this.observer != null)
+            this.observer.update();
     }
 
     @Override
